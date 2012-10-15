@@ -4,6 +4,13 @@ My Fantasy Draft Board is a simple apples to oranges comparison app for NFL fant
 
 My Fantasy Draft Board app allows users to view stats and roster information from the previous football season. Track offensive skill position player stats, defensive skill position player stats and kicking and punting team stats. My Fantasy Draft Board will give users a side-by-side comparison of players and teams for a better fantasy draft experience. Learn more about the players you should be drafting or watching for future drafts.
 
+Use the following search criteria:
+For a list at any given position type one of the following:
+positions = ["quarterbacks", "widereceivers", "runningbacks", "tightends", "defensiveline", "defensivebacks", "linebackers", "kickers", "punters", kickreturn"]
+topten = ["toptenqbs", "toptenwrs", "toptenrbs", "toptentes", "toptendline", "toptendbs", "toptenlbs", "toptenkick", "toptenpunt", "toptenkrt"]
+by age older than = ["qbs", "wrs", "rbs", "tes", "dline", "dbs", "lbs", "kick", "punt", "krt"] + any age argument
+
+
 My Fantasy Draft Board uses data compiled by Scoresheet Fantasy Sports. CSV files can be downloaded at http://www.scoresheet.com/NFL-PlayerList.csv.
 
 My Fantasy Draft Board was authored by:

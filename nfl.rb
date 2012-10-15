@@ -1,22 +1,96 @@
-require('csv')
-class QBS 
-	
-array = []
-i = 0
-CSV.open('quarterbacks.csv', 'r') do |row|
-	players = array << [row]
-	qb_col1 = players[i][0][0]
-	qb_col2 = players[i][0][1]
-	qb_col3 = players[i][0][2]
-	qb_col4 = players[i][0][3]
-	qb_col5 = players[i][0][4]
-	qb_col6 = players[i][0][5]
+Shoes.app :title => "My Fantasy Draft Board",
+:width => 550,
+:height => 545 do
 
-	quarterbacks = "   ", qb_col6.to_s.ljust(30), " | ", qb_col5.to_s.center(10), " | ", qb_col2.to_s.center(10), " | ", qb_col3.to_s.center(10), " | ", qb_col4.to_s.center(10), " | "
-	if players == nil
-		else
-			print quarterbacks , "\n"
+# background darkslategray..lightsteelblue
+background "NFL.png"
+
+
+stack do
+	background cornflowerblue..skyblue
+	subtitle "My Fantasy Draft Board"
+end
+
+require ('csv')
+
+flow do
+	para "Select a skill position:"
+	@position = list_box :items => ["Quarterbacks", "Running Backs", "Wide Receivers", "Top Ten Quarterbacks", "Top Ten Running Backs", "Top Ten Wide Receivers"]
+	button "GO" do
+
+		pos = @position.text
+		if pos == "Quarterbacks" || pos == "Top Ten Quarterbacks"
+		file = "quarterbacks.csv"
+		elsif pos == "Running Backs" || pos == "Top Ten Running Backs"
+		file = "running_backs.csv"
+		elsif pos == "Wide Receivers" || pos == "Top Ten Wide Receivers"
+		file = "wide_receivers.csv"
 		end
-		i += 1
+	stack do
+		background indianred..lightcoral,
+		:height => 28
+		caption pos
 	end
+		array = []
+		i = 0
+		player = CSV.parse(File.read(file))
+		if pos == "Top Ten Quarterbacks" || pos == "Top Ten Running Backs" || pos == "Top Ten Wide Receivers"
+			n = 11
+		else
+		n = player.length
+		end
+
+		n.times do
+
+		cat = player[i][0]
+		if player[i][1] == nil
+			pts = " "
+		else
+			pts = player[i][1]
+		end
+		if player[i][2] == nil
+			ppg = " "
+		else
+			ppg = player[i][2]
+		end
+		age = player[i][3]
+		team_bye = player[i][4]
+		name = player[i][5]
+
+		if i%2 == 0
+			bg = white
+		elsif i%2 > 0
+			bg = lightgrey
+		end
+		
+		flow :width => "35%", :height => 24 do
+		background bg
+		para name
+		end
+		flow :width => "20%", :height => 24 do
+		background bg
+		para team_bye
+		end
+		flow :width => "15%", :height => 24 do
+		background bg
+		para pts
+		end
+		flow :width => "15%", :height => 24 do
+		background bg
+		para ppg
+		end
+		flow :width => "15%", :height => 24 do
+		background bg
+		para age, "\n" 
+		end
+
+		i += 1
+		end
+
+		stack do
+		background cornflowerblue..skyblue
+		inscription "Copyright © 2012 My Fantasy Draft Board"
+		end
+	end
+end
 end
