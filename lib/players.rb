@@ -15,16 +15,7 @@ class Players
   def array_from_csv
       array = []
       CSV.foreach(get_file) do |row|
-        player = Player.new
-        player.tap do |p|
-          p.rank = row[0]
-          p.points = row[1]
-          p.ppg = row[2]
-          p.age = row[3]
-          p.bye = row[4]
-          p.name = row[5]
-        end
-        array += [player]
+        array += [Player.new(row)]
       end
       array
   end
@@ -63,7 +54,7 @@ class Players
     add = gets.chomp!
     if add == "add"
       CSV.open("files/my_list.csv", 'ab') do |csv|
-        csv << [@position, player.rank, player.points, player.ppg, player.age, player.bye, player.name]
+        csv << [@position, *player.to_a]
       end
     else
       first_prompt
