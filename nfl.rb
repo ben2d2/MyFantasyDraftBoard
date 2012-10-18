@@ -20,11 +20,11 @@ flow do
 
 		pos = @position.text
 		if pos == "Quarterbacks" || pos == "Top Ten Quarterbacks"
-		file = "quarterbacks.csv"
+		file = "files/quarterbacks.csv"
 		elsif pos == "Running Backs" || pos == "Top Ten Running Backs"
-		file = "running_backs.csv"
+		file = "files/running_backs.csv"
 		elsif pos == "Wide Receivers" || pos == "Top Ten Wide Receivers"
-		file = "wide_receivers.csv"
+		file = "files/wide_receivers.csv"
 		end
 	stack do
 		background indianred..lightcoral,

@@ -6,9 +6,16 @@ My Fantasy Draft Board app allows users to view stats and roster information fro
 
 Use the following search criteria:
 For a list at any given position type one of the following:
-positions = ["quarterbacks", "widereceivers", "runningbacks", "tightends", "defensiveline", "defensivebacks", "linebackers", "kickers", "punters", kickreturn"]
-topten = ["toptenqbs", "toptenwrs", "toptenrbs", "toptentes", "toptendline", "toptendbs", "toptenlbs", "toptenkick", "toptenpunt", "toptenkrt"]
-by age older than = ["qbs", "wrs", "rbs", "tes", "dline", "dbs", "lbs", "kick", "punt", "krt"] + any age argument
+positions = ["quarterbacks", "widereceivers", "runningbacks", "tightends", "defensiveline", "defensivebacks", "linebackers", "kickers", "punters", kickreturnteams"]
+
+Top-ten at any gien position:
+position + topten
+
+Players at any given position older or younger than any given age:
+position + (olderthan or youngerthan) + age
+
+Sort players at any given position by name or age, ascending or descending:
+position + (sortbyname or sortbyage) + (ASC or DESC)
 
 
 My Fantasy Draft Board uses data compiled by Scoresheet Fantasy Sports. CSV files can be downloaded at http://www.scoresheet.com/NFL-PlayerList.csv.
