@@ -1,7 +1,7 @@
 
-require ('./lib/players.rb')
-require ('./lib/search.rb')
-require ('colorize') 
+require './lib/players.rb'
+require './lib/search.rb'
+require 'colorize' 
 
 def read_my_list_csv
   my_list_csv = []
@@ -31,7 +31,7 @@ def first_prompt
   puts
 
   print "Enter selection here:".colorize( :blue )
-  @pos_arg = gets.chomp!
+  @position = gets.chomp!
   
   second_prompt
 end
@@ -66,7 +66,7 @@ def third_prompt
   when /^sel/
     print "Enter rank no. for the player to select:".colorize( :blue )
     rank_no = gets.chomp!
-    play_list = Players.new(@pos_arg)
+    play_list = Players.new(@position)
     play_list.select_one_player(rank_no)
     third_prompt
   when /^new/
@@ -83,7 +83,7 @@ def third_prompt
 end
 
 def print_list
-  play_list = Players.new(@pos_arg)
+  play_list = Players.new(@position)
 
   case @second_prompt.chomp.downcase
   when "top10"
@@ -93,12 +93,12 @@ def print_list
     play_list.all_at_position
 
   when "older than"
-    print "Enter age for #{@pos_arg} #{@second_prompt}:".colorize( :blue )
+    print "Enter age for #{@position} #{@second_prompt}:".colorize( :blue )
     age_arg = gets.chomp!
     play_list.older_than_age(age_arg)
 
   when "younger than"
-    print "Enter age for #{@pos_arg} #{@second_prompt}:".colorize( :blue )
+    print "Enter age for #{@position} #{@second_prompt}:".colorize( :blue )
     age_arg = gets.chomp!
     play_list.younger_than_age(age_arg)
 
