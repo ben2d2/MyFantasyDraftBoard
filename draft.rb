@@ -4,11 +4,11 @@ require ('./lib/search.rb')
 require ('colorize') 
 
 def read_my_list_csv
-    my_list_csv = []
-    CSV.foreach("files/my_list.csv") do |row|
-      my_list_csv += [row]
-    end
-    my_list_csv
+  my_list_csv = []
+  CSV.foreach("files/my_list.csv") do |row|
+    my_list_csv += [row]
+  end
+  my_list_csv
 end
 
 def first_prompt
