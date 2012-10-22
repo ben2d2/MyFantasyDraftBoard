@@ -4,33 +4,33 @@ require 'players'
 class PlayersTest < Test::Unit::TestCase
     
     def test_01a_get_file
-        player = Players.new("quarterbacks")
-        assert_equal("files/quarterbacks.csv",player.get_file)
+        player = Players.new("qbs")
+        assert_equal("files/qbs.csv",player.get_file)
     end
     
     def test_01b_get_file
-        player = Players.new("toptentes")
-        assert_equal("files/tight_ends.csv",player.get_file)
+        player = Players.new("tes")
+        assert_equal("files/tes.csv",player.get_file)
     end
     
     
     def test_01c_get_file
-        player = Players.new("kick")
-        assert_equal("files/kickers.csv",player.get_file)
+        player = Players.new("krs")
+        assert_equal("files/krs.csv",player.get_file)
     end
 
     def test_02a_all_at_position_array_length
-        player = Players.new("quarterbacks")
+        player = Players.new("qbs")
         assert_equal(86,player.array_from_csv.length)        
     end
 
     def test_02b_all_at_position_array_length
-        player = Players.new("kickers")
+        player = Players.new("krs")
         assert_equal(35,player.array_from_csv.length)        
     end
     
     def test_03a_top_ten_quarterbacks
-        player = Players.new("quarterbacks")
+        player = Players.new("qbs")
         assert_equal([["1)", "187.7", "11.7", "33", "NO -6", "Brees, Drew"],
           ["2)", "185.9", "12.4", "28", "GB -10", "Rodgers, Aaron"],
            ["3)", "171", "10.7", "35", "NE -9", "Brady, Tom"],
@@ -44,7 +44,7 @@ class PlayersTest < Test::Unit::TestCase
     end
 
     def test_03b_top_ten_punters_array_length
-        player = Players.new("punters")
+        player = Players.new("ptr")
         assert_equal(10,player.top_ten_players.length)        
     end
 

@@ -1,6 +1,6 @@
 
 require './lib/players.rb'
-require './lib/search.rb'
+# require './lib/nfl_logo'
 require 'colorize' 
 
 def read_my_list_csv
@@ -8,7 +8,8 @@ def read_my_list_csv
   CSV.foreach("files/my_list.csv") do |row|
     my_list_csv += [row]
   end
-  my_list_csv
+  puts "My Fantasy Wish List".colorize( :white ).colorize( :background => :red )
+  my_list_csv.each { |a| print a[0].upcase.colorize( :red ), " - ", a[6].colorize( :red ), "\n"}
 end
 
 def first_prompt
@@ -19,9 +20,7 @@ def first_prompt
   puts "at each prompt:".colorize( :blue )
   puts
 
-  puts "My Fantasy Wish List".colorize( :white ).colorize( :background => :red )
-  read_my_list_csv.each { |a| print a[0].upcase.colorize( :red ), " - ", a[6].colorize( :red ), "\n"}
-  puts 
+  read_my_list_csv 
 
   puts "Using the search terms listed below, please enter a player position to begin your search.".colorize( :green )
   puts "Positions search terms:".colorize( :green )
@@ -32,12 +31,17 @@ def first_prompt
 
   print "Enter selection here:".colorize( :blue )
   @position = gets.chomp!
-  
-  second_prompt
+  if @position == "quit"
+    puts "Thanks for joining us! Goodbye."
+    require ('./lib/nfl_logo')
+    exit
+  else
+    second_prompt
+  end
 end
 
 def second_prompt
-  puts "Select all, top10, sort by name, sort by age, older than, younger than, select, or quit:".colorize( :blue )
+  puts "Select all, top10, sort by name, sort by age, older than, younger than, select and add, or quit:".colorize( :blue )
   @second_prompt = gets.chomp!
   
   if @second_prompt == "quit"
@@ -51,15 +55,13 @@ def second_prompt
 end
 
 def third_prompt
-  puts "My Fantasy Wish List".colorize( :white ).colorize( :background => :red )
-  read_my_list_csv.each { |a| print a[0].upcase.colorize( :red ), " - ", a[6].colorize( :red ), "\n"}
   puts "You may continue to browse each player position by entering a command term below.".colorize( :green )
   puts
-  puts "ref - to refine your search at given position".colorize( :blue )
-  puts "sel - select player by rank no.".colorize( :blue )
-  puts "new - to enter a new skill position to search".colorize( :blue )
+  puts "ref - refine your search at given position with previous search terms".colorize( :blue )
+  puts "sel - select player by rank no. and add to draft board".colorize( :blue )
+  puts "new - enter a new skill position to restart your search".colorize( :blue )
 
-  puts "quit - to exit program".colorize( :blue )
+  puts "quit - exit program".colorize( :blue )
   answer = gets.chomp.downcase
 
   case answer
@@ -68,6 +70,7 @@ def third_prompt
     rank_no = gets.chomp!
     play_list = Players.new(@position)
     play_list.select_one_player(rank_no)
+    read_my_list_csv
     third_prompt
   when /^new/
     first_prompt
