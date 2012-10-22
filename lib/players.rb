@@ -4,12 +4,13 @@ require './lib/player'
 class Players
   attr_accessor :second_prompt, :sort, :order, :rank, :single_player
 
-  def initialize(pos_arg)
+  def initialize(pos_arg, fileextension = ".csv")
     @position = pos_arg  
+    @fileextension = fileextension
   end
 
   def get_file
-      file = "files/#{@position}.csv"  
+      file = "files/#{@position}#{@fileextension}"  
   end
 
   def array_from_csv
