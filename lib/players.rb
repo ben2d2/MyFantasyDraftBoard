@@ -25,15 +25,8 @@ class Players
   end
 
   def top_ten_players
-    i = 0
-    top_ten = []
-    array_from_csv.each do |pl|
-      if i < 10
-        top_ten += [pl]
-        i += 1
-      end
-    end
-    print_players_for_given_method(top_ten)
+    results = array_from_csv.select { |player| player.rank.to_i <= 10 }
+    print_players_for_given_method(results)
   end
 
   def older_than_age(age)
@@ -42,12 +35,14 @@ class Players
   end
 
   def younger_than_age(age)
+    #select gets all matches
   results = array_from_csv.select { |player| player.age.to_i <= age.to_i }
   print_players_for_given_method(results)
 
   end
 
   def select_one_player(rank)
+    #find method seeks a specific match
     player = array_from_csv.find { |player| player.rank.to_i == rank.to_i }  
     print_players_for_given_method([player])
     puts "Type add to move player to your draft board or new to start over:".colorize( :blue )
@@ -106,7 +101,7 @@ class Players
         points = "Kicks"
         ppg = "KPG"
     end
-    ["Rank".ljust(6), name.ljust(35), bye.center(10), points.center(10), ppg.center(10), ""].join(" | ")
+    ["Rank".ljust(6), name.ljust(35), bye.center(10), points.center(10), ppg.center(10), age.center(10), ""].join(" | ")
   end
 
   def print_players_for_given_method(players)
