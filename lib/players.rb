@@ -57,8 +57,6 @@ class Players
   end
 
   def sort(sort, order)
-    #Very useful tip on sort array of arrays
-    # http://stackoverflow.com/questions/2218032/how-to-sort-an-array-of-arrays-by-three-or-more-elements-ruby
     array_sorted = []
     if sort == "sort by name" && order == "ASC"
       array_sorted = array_from_csv.sort_by(&:name)
